@@ -22,11 +22,9 @@ gets your source code from InsurStaq.
 
 ## Quick start
 
-| | |
-|---|---|
-| **1 · Install InsurStaq** | Get [InsurStaq for Mac](https://insurstaq.ai) 1.0.6 or later, add your repository and run one audit. Guard needs a licence that includes it (Solo and above). |
-| **2 · Connect your agent** | In InsurStaq, open **Settings → Coding Agents** and click **Connect…** next to your agent. Nothing changes until you confirm. |
-| **3 · Ask before you ship** | Tell your agent: *"Before you finish, verify the changes with InsurStaq and fix anything it blocks."* |
+1. **Install InsurStaq.** Get [InsurStaq for Mac](https://insurstaq.ai) 1.0.6 or later, add your repository and run one audit. Guard needs a licence that includes it (Solo and above).
+2. **Connect your agent.** In InsurStaq, open **Settings → Coding Agents** and click **Connect…** next to your agent. Nothing changes until you confirm.
+3. **Ask before you ship.** Tell your agent: *"Before you finish, verify the changes with InsurStaq and fix anything it blocks."*
 
 Prefer to set it up by hand? Pick your agent below.
 
