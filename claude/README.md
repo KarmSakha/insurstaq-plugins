@@ -12,11 +12,11 @@ Claude Code is named only to describe compatibility. No affiliation or endorseme
 
 Requirements: InsurStaq for Mac 1.0.6 or later (in `/Applications`) with the repository added,
 and a license that includes Guard. The app bundles the `insurstaq` command the plugin runs; nothing else to
-install ([details](../README.md#where-the-insurstaq-command-comes-from)).
+install ([details](../docs/REFERENCE.md#where-the-insurstaq-command-comes-from)).
 
 Without any marketplace: in InsurStaq, open **Settings → Coding Agents** and choose **Connect…**
 next to Claude Code, or run the command in
-[Install without a marketplace](../README.md#install-without-a-marketplace).
+[Install without a marketplace](../docs/REFERENCE.md#install-without-a-marketplace).
 
 From this repository's marketplace, inside Claude Code:
 
@@ -43,7 +43,7 @@ Ask Claude to check its work, for example:
 Claude calls `insurstaq_verify_changes` with the repository path and gets back `PASSED`,
 `PASSED_WITH_WARNINGS`, `BLOCKED` or `UNABLE_TO_VERIFY` with finding ids, severities and
 `file:line` locations. It can then open those files itself, or call `insurstaq_request_fix` to
-queue the finding for you to review in the InsurStaq app. See the [tool list](../README.md#tools).
+queue the finding for you to review in the InsurStaq app. See the [tool list](../docs/REFERENCE.md#tools).
 
 ## Privacy
 

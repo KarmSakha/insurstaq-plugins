@@ -10,7 +10,7 @@ Cursor is named only to describe compatibility. No affiliation or endorsement im
 
 Requirements: InsurStaq for Mac (in `/Applications`) with the repository added, and a license
 that includes Guard. The app bundles the `insurstaq` command the plugin runs; nothing else to
-install ([details](../README.md#where-the-insurstaq-command-comes-from)).
+install ([details](../docs/REFERENCE.md#where-the-insurstaq-command-comes-from)).
 
 * **Plugin:** install InsurStaq from the Cursor Marketplace (Customize → Plugins), or load this
   folder (`.cursor-plugin/plugin.json` + `mcp.json`) as a local plugin.
@@ -29,7 +29,7 @@ Ask the agent to verify its work, for example:
 
 The agent calls `insurstaq_verify_changes` and receives a verdict with finding ids, severities
 and `file:line` locations, then fixes the code itself or queues the finding for you in InsurStaq
-with `insurstaq_request_fix`. See the [tool list](../README.md#tools).
+with `insurstaq_request_fix`. See the [tool list](../docs/REFERENCE.md#tools).
 
 ## Privacy
 

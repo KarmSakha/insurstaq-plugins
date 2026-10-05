@@ -11,7 +11,7 @@ No affiliation or endorsement implied.
 
 Requirements: InsurStaq for Mac (in `/Applications`) with the repository added, and a license
 that includes Guard. The app bundles the `insurstaq` command the plugin runs; nothing else to
-install ([details](../README.md#where-the-insurstaq-command-comes-from)). MCP tools in Copilot
+install ([details](../docs/REFERENCE.md#where-the-insurstaq-command-comes-from)). MCP tools in Copilot
 need VS Code's agent mode; availability depends on your Copilot plan and organization policy.
 
 * **One repository:** copy [`.vscode/mcp.json`](.vscode/mcp.json) into the repository's
@@ -32,7 +32,7 @@ In agent mode, ask Copilot to verify its work, for example:
 
 Copilot receives a verdict with finding ids, severities and `file:line` locations, then fixes the
 code itself or queues the finding for you in InsurStaq with `insurstaq_request_fix`. See the
-[tool list](../README.md#tools).
+[tool list](../docs/REFERENCE.md#tools).
 
 ## Privacy
 
