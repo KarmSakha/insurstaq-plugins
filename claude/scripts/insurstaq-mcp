@@ -1,0 +1,26 @@
+#!/bin/sh
+# Starts the InsurStaq MCP server for Claude Code: `insurstaq mcp`, over stdio, on this Mac.
+#
+# It runs the command-line tool bundled in InsurStaq.app, or the `insurstaq` command installed
+# from InsurStaq -> Settings -> Coding Agents. This script only picks that binary and replaces
+# itself with it; the server answers with security metadata only and makes no network requests.
+#
+# Copyright (c) KarmSakha Limited. MIT licence (LICENSE). InsurStaq itself is
+# proprietary software.
+
+for candidate in \
+  "/Applications/InsurStaq.app/Contents/MacOS/insurstaq-cli" \
+  "${HOME:-/nonexistent}/Applications/InsurStaq.app/Contents/MacOS/insurstaq-cli" \
+  "/usr/local/bin/insurstaq" \
+  "${HOME:-/nonexistent}/.local/bin/insurstaq" \
+  "${HOME:-/nonexistent}/.cargo/bin/insurstaq"
+do
+  if [ -x "$candidate" ]; then
+    exec "$candidate" mcp
+  fi
+done
+
+echo "InsurStaq is not installed on this Mac, so its MCP server cannot start." >&2
+echo "Install InsurStaq for Mac (insurstaq.ai) in Applications, open it once and add your repository, then restart Claude Code." >&2
+echo "If InsurStaq is installed somewhere else, open InsurStaq -> Settings -> Coding Agents and choose Connect or Install Command-Line Tool." >&2
+exit 127

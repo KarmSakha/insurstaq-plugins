@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "insurstaq": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/insurstaq-mcp",
+      "args": []
+    }
+  }
+}

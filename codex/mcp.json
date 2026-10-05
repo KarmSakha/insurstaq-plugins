@@ -1,0 +1,13 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "insurstaq": {
+      "type": "stdio",
+      "command": "/bin/sh",
+      "args": [
+        "-c",
+        "for b in /Applications/InsurStaq.app/Contents/MacOS/insurstaq-cli \"$HOME/Applications/InsurStaq.app/Contents/MacOS/insurstaq-cli\"; do if [ -x \"$b\" ]; then exec \"$b\" mcp; fi; done; export PATH=\"$PATH:/usr/local/bin:$HOME/.local/bin\"; exec insurstaq mcp"
+      ]
+    }
+  }
+}

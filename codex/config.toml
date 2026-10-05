@@ -1,0 +1,16 @@
+# Add to ~/.codex/config.toml (or a trusted project's .codex/config.toml) to configure Codex
+# directly instead of installing the InsurStaq plugin. It launches the same local server.
+[mcp_servers.insurstaq]
+command = "/bin/sh"
+# Prefers the tool bundled in InsurStaq.app, then `insurstaq` on PATH (see ../README.md).
+args = ["-c", "for b in /Applications/InsurStaq.app/Contents/MacOS/insurstaq-cli \"$HOME/Applications/InsurStaq.app/Contents/MacOS/insurstaq-cli\"; do if [ -x \"$b\" ]; then exec \"$b\" mcp; fi; done; export PATH=\"$PATH:/usr/local/bin:$HOME/.local/bin\"; exec insurstaq mcp"]
+startup_timeout_sec = 20
+# insurstaq_verify_changes runs a Guard analysis; large repositories can take a while.
+tool_timeout_sec = 300
+enabled_tools = [
+  "insurstaq_guard_status",
+  "insurstaq_verify_changes",
+  "insurstaq_list_regressions",
+  "insurstaq_get_finding_summary",
+  "insurstaq_request_fix",
+]

@@ -1,0 +1,23 @@
+{
+  "name": "insurstaq",
+  "description": "InsurStaq Guard for coding agents: checks the security effect of your agent's code changes with InsurStaq on your Mac and returns security metadata, never source code.",
+  "owner": {
+    "name": "KarmSakha Limited",
+    "url": "https://insurstaq.ai"
+  },
+  "plugins": [
+    {
+      "name": "insurstaq",
+      "source": "./claude",
+      "description": "Checks the security effect of your agent's code changes with InsurStaq on this Mac. Returns security metadata (verdict, severity, category, finding id, file:line), never source code.",
+      "version": "1.0.0",
+      "author": {
+        "name": "KarmSakha Limited",
+        "url": "https://insurstaq.ai"
+      },
+      "homepage": "https://insurstaq.ai",
+      "repository": "https://github.com/KarmSakha/insurstaq-plugins",
+      "license": "MIT"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "insurstaq",
+  "displayName": "InsurStaq Guard",
+  "version": "1.0.0",
+  "description": "Checks the security effect of your agent's code changes with InsurStaq on this Mac. Returns security metadata (verdict, severity, category, finding id, file:line), never source code.",
+  "author": {
+    "name": "KarmSakha Limited",
+    "url": "https://insurstaq.ai"
+  },
+  "homepage": "https://insurstaq.ai",
+  "repository": "https://github.com/KarmSakha/insurstaq-plugins",
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "guard",
+    "local",
+    "mcp"
+  ]
+}
