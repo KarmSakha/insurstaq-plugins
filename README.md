@@ -266,3 +266,10 @@ per-request revision 2026-07-28 (`server/discover`).
 | `UNABLE_TO_VERIFY` | Guard could not complete (no baseline yet, a scan in progress, an engine failed). Nothing is verified; open InsurStaq. |
 | `NO_ANALYSIS` | Guard has not analysed the project yet; call `insurstaq_verify_changes`. |
 | Server fails to start | InsurStaq.app is not in `/Applications` or `~/Applications` and `insurstaq` is not on the agent's `PATH` (use **Connect…** or the absolute path from Settings → Coding Agents), or the Keychain prompt was denied. |
+
+## License
+
+The plugin launchers and manifests in this repository are MIT-licensed (see [LICENSE](LICENSE)).
+This licence covers only the plugin launcher and manifest files here. The
+InsurStaq application and the `insurstaq` command-line tool they start are proprietary software
+of KarmSakha Limited and are not covered by this licence.
