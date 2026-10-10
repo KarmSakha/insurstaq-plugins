@@ -21,7 +21,7 @@ next to Claude Code, or run the command in
 From this repository's marketplace, inside Claude Code:
 
 ```text
-/plugin marketplace add KarmSakha/insurstaq-plugins
+/plugin marketplace add insurstaq-ai/insurstaq-plugins
 /plugin install insurstaq@insurstaq
 ```
 

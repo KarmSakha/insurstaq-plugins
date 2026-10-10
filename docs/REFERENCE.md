@@ -24,7 +24,7 @@ Product names are used only to describe compatibility. No affiliation or endorse
    * Claude Code, from this repository's marketplace:
 
      ```text
-     /plugin marketplace add KarmSakha/insurstaq-plugins
+     /plugin marketplace add insurstaq-ai/insurstaq-plugins
      /plugin install insurstaq@insurstaq
      ```
 

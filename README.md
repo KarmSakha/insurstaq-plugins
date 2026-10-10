@@ -36,7 +36,7 @@ Prefer to set it up by hand? Pick your agent below.
 Inside Claude Code:
 
 ```text
-/plugin marketplace add KarmSakha/insurstaq-plugins
+/plugin marketplace add insurstaq-ai/insurstaq-plugins
 /plugin install insurstaq@insurstaq
 ```
 
