@@ -1,0 +1,35 @@
+{
+  "description": "InsurStaq Guard Hooks: checks the security effect of each turn's changes on this Mac. Metadata only; no network.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "\"${CLAUDE_PLUGIN_ROOT}/scripts/insurstaq-hook\" SessionStart", "timeout": 5 }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          { "type": "command", "command": "\"${CLAUDE_PLUGIN_ROOT}/scripts/insurstaq-hook\" PostToolUse", "timeout": 15, "async": true }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "\"${CLAUDE_PLUGIN_ROOT}/scripts/insurstaq-hook\" Stop", "timeout": 75 }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Read|Edit|Write|MultiEdit|Grep|Glob|NotebookEdit|Bash",
+        "hooks": [
+          { "type": "command", "command": "\"${CLAUDE_PLUGIN_ROOT}/scripts/insurstaq-hook\" PreToolUse", "timeout": 10 }
+        ]
+      }
+    ]
+  }
+}

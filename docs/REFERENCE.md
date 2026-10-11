@@ -91,17 +91,21 @@ hosted model.
 
 ## Tools
 
-Every tool takes `project`: the absolute path of the repository (or of any file or folder inside
-it, or a `file://` URI) or the InsurStaq project id. The repository must already be added to the
+Every tool except `insurstaq_build_status` (which takes the `session_id` that
+`insurstaq_build_delegate` returned) takes `project`: the absolute path of the repository (or of
+any file or folder inside it, or a `file://` URI) or the InsurStaq project id. The repository must already be added to the
 InsurStaq app; unknown paths return `PROJECT_NOT_FOUND` and no data.
 
 | Tool | What it does | Returns |
 |---|---|---|
 | `insurstaq_guard_status` | Current Guard state of the project. | state (`clean`, `attention`, `blocked`, `incomplete`, `stale_baseline`, `disabled`, `error`, …), baseline commit, HEAD, changed-file count, introduced/resolved counts, completeness, last run time |
-| `insurstaq_verify_changes` | Runs one Guard analysis now against the baseline (deterministic engines only: no AI, no repository code execution). | `PASSED`, `PASSED_WITH_WARNINGS`, `BLOCKED` or `UNABLE_TO_VERIFY`, counts, regressions (metadata only) |
+| `insurstaq_verify_changes` | Runs one Guard analysis now against the baseline (deterministic engines only: no AI, no repository code execution). | `PASSED`, `PASSED_WITH_WARNINGS`, `PASSED_WITH_LIMITED_COVERAGE`, `BLOCKED` or `UNABLE_TO_VERIFY`, counts, regressions (metadata only) |
 | `insurstaq_list_regressions` | Regressions introduced since the baseline, from the latest analysis. | per regression: finding id, severity, category, title, file:line, confidence, short summary |
 | `insurstaq_get_finding_summary` | One finding by id (`SEC-143`). | status, severity, category, title, file:line, CWE, short description, recommended direction, attack-path status |
 | `insurstaq_request_fix` | Queues a fix request in the InsurStaq app. | acknowledgement; the user reviews it in InsurStaq. Never changes files, never returns a patch |
+| `insurstaq_project_rules` | The project's detected frameworks and open finding categories, turned into rules (1.0.9). | up to 20 short rules from InsurStaq's own catalog, sanitized |
+| `insurstaq_build_delegate` | Takes `task` (plain text, at most 2,000 characters), optional `paths` (at most 20, repository-relative) and `agent`. Creates a pending InsurStaq Build request (1.0.9). | a `session_id`; nothing runs until the user starts the request in InsurStaq |
+| `insurstaq_build_status` | Takes `session_id` (1.0.9). | the request's state (`awaiting_user_start`, `dismissed`, or the Build task's state once started), check counts and the Build security gate's verdict |
 
 Each result has a short text block whose first line is the verdict or state, followed by
 `severity:` / `category:` / `finding:` / `summary:` / `file:` lines, plus the same data as
@@ -131,6 +135,8 @@ in one place inside InsurStaq and covered by tests.
 ## Requirements
 
 1. **InsurStaq for Mac 1.0.6 or later**, with the repository added (Projects → Add) and audited once.
+   Guard Hooks and the tools `insurstaq_project_rules`, `insurstaq_build_delegate` and
+   `insurstaq_build_status` need **1.0.9 or later** ([HOOKS.md](HOOKS.md)).
 2. **The Guard license feature** (Solo and above). Without it every tool answers
    `LICENSE_REQUIRED` with an upgrade link and no data.
 3. **The `insurstaq` command-line tool**, which ships inside the app. Nothing else to install.

@@ -22,7 +22,7 @@ gets your source code from InsurStaq.
 
 ## Quick start
 
-1. **Install InsurStaq.** Get [InsurStaq for Mac](https://insurstaq.ai) 1.0.6 or later, add your repository and run one audit. Guard needs a licence that includes it (Solo and above).
+1. **Install InsurStaq.** Get [InsurStaq for Mac](https://insurstaq.ai) 1.0.6 or later (1.0.9 or later for Guard Hooks and the three newest tools), add your repository and run one audit. Guard needs a licence that includes it (Solo and above).
 2. **Connect your agent.** In InsurStaq, open **Settings → Coding Agents** and click **Connect…** next to your agent. Nothing changes until you confirm.
 3. **Ask before you ship.** Tell your agent: *"Before you finish, verify the changes with InsurStaq and fix anything it blocks."*
 
@@ -84,6 +84,17 @@ Then **MCP: List Servers** should show `insurstaq`. More in [`copilot/`](copilot
 These commands assume InsurStaq is in `/Applications`. **Settings → Coding Agents** in the app
 shows and copies them with the exact path on your Mac.
 
+## Guard Hooks (InsurStaq 1.0.9)
+
+With Guard Hooks the check runs on its own: InsurStaq looks at every change your agent makes and checks it when the agent tries to finish a turn. Pick a mode in **Settings → Coding Agents**: **Observe** records, **Warn** tells the agent and you, **Enforce** keeps the agent working until it fixes a blocking regression (at most three times per turn, then it tells you). Hooks return metadata only and open no network connection.
+
+- **Claude Code:** the plugin registers the hooks (`claude/hooks/hooks.json`).
+- **Cursor:** copy `cursor/hooks.json` to your project's `.cursor/hooks.json` or `~/.cursor/hooks.json`.
+- **Codex:** the `[hooks]` tables in `codex/config.toml`; Codex asks you to trust them once.
+- **GitHub Copilot:** no hooks; `copilot/.github/copilot-instructions.md` asks it to verify before it finishes (advisory).
+
+Events, outputs and the agent versions they were checked against: [docs/HOOKS.md](docs/HOOKS.md), [docs/COMPATIBILITY.md](docs/COMPATIBILITY.md).
+
 ## What your agent gets back
 
 A verdict and where to look. Never your code:
@@ -108,15 +119,18 @@ itself. If an analysis can't finish, the answer is `UNABLE_TO_VERIFY`, never a f
 - **Metadata only.** Answers carry a verdict, severity, category, finding ID, short summary and file location. They never include file contents, snippets, secrets or diffs.
 - **Your coding tool is separate.** If it uses a hosted model, it may send code to its own provider. That's between you and that tool.
 
-## The five tools
+## The tools
 
 | Tool | What it does |
 |---|---|
-| `insurstaq_verify_changes` | Checks the current changes now and returns `PASSED`, `PASSED_WITH_WARNINGS`, `BLOCKED` or `UNABLE_TO_VERIFY`. |
+| `insurstaq_verify_changes` | Checks the current changes now and returns `PASSED`, `PASSED_WITH_WARNINGS`, `PASSED_WITH_LIMITED_COVERAGE`, `BLOCKED` or `UNABLE_TO_VERIFY`. |
 | `insurstaq_list_regressions` | Lists the security regressions introduced since the baseline. |
 | `insurstaq_guard_status` | Shows Guard's current state for the project. |
 | `insurstaq_get_finding_summary` | Explains one finding (`SEC-143`): severity, CWE and how to fix it. |
 | `insurstaq_request_fix` | Queues a fix for you to review in InsurStaq. It never edits files itself. |
+| `insurstaq_project_rules` | The security rules for your project's stack, from InsurStaq's own catalog (1.0.9). |
+| `insurstaq_build_delegate` | Hands a task to InsurStaq Build. It waits until you start it in InsurStaq (1.0.9). |
+| `insurstaq_build_status` | The state of a task handed to Build, with its security check's verdict (1.0.9). |
 
 ## Troubleshooting
 

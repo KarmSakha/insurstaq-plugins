@@ -34,6 +34,12 @@ Copilot receives a verdict with finding ids, severities and `file:line` location
 code itself or queues the finding for you in InsurStaq with `insurstaq_request_fix`. See the
 [tool list](../docs/REFERENCE.md#tools).
 
+## Advisory instructions
+
+Copilot has no hooks InsurStaq relies on. [`.github/copilot-instructions.md`](.github/copilot-instructions.md)
+asks it to verify with InsurStaq before it reports work as done; copy it into your repository's
+`.github/`. It is advisory: nothing stops a turn that skips it.
+
 ## Privacy
 
 InsurStaq never uploads your source code. The server returns security metadata (verdict,
