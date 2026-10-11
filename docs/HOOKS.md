@@ -117,7 +117,9 @@ checks the change at Stop and in CI.
 ## Private paths (best effort)
 
 File tools on a matching path are denied with: "This path is private by project policy. Ask
-InsurStaq Build to make this change locally: use insurstaq_build_delegate." Shell commands are
+InsurStaq Build to make this change: use insurstaq_build_delegate (the user reviews and starts
+it in InsurStaq)." Build runs on the AI it is routed to in InsurStaq Settings → AI & Models; with an
+external provider the user allowed for the project, the files it reads go to that provider. Shell commands are
 split into words and each literal path (`cat billing/x`, `sed … ../billing/x`, `dd if=billing/x`,
 a folder like `grep -r … billing`) is checked too.
 
