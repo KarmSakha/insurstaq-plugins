@@ -8,7 +8,7 @@ output's exact shape; a mismatch shows ✗. If an agent's input is no longer rec
 `workspace_roots`), hooks answer "unable to verify" per mode (Warn notes it; Enforce blocks a Stop
 once and pauses commit/push), never a silent pass.
 
-Checked: 11 October 2026.
+Checked: 11 October 2026 (schemas); live end-to-end with Claude Code: 12 October 2026.
 
 | Agent | Version checked | Source | Events InsurStaq uses | Status |
 |---|---|---|---|---|
@@ -16,6 +16,29 @@ Checked: 11 October 2026.
 | Cursor | 2.3.x (from a forum post; the release number could not be confirmed) | https://cursor.com/docs/hooks | `sessionStart`, `afterFileEdit`, `stop`, `beforeReadFile`, `beforeShellExecution` | **Partially verified** against the published documentation; fields come from the page's published excerpts |
 | Codex CLI | `rust-v0.162.1` (source `openai/codex` at cc7ba336, 10 Oct 2026) | `codex-rs/hooks/schema/generated/*.schema.json`, `codex-rs/config/src/hook_config.rs`, `docs/config.md` in https://github.com/openai/codex | `SessionStart`, `PostToolUse` (`apply_patch`), `Stop`, `PreToolUse` (`Bash\|apply_patch`) | Verified from the Codex source |
 | GitHub Copilot (VS Code) | — | — | none: MCP tools plus `copilot/.github/copilot-instructions.md` | **Advisory only** |
+
+## Live end-to-end runs
+
+Each hook package is also run with the real agent, headless, on a staged copy of a seeded change
+case: an invoice route whose ownership check is removed (an insecure direct object reference,
+`SEC-102`). The run uses project-level hook settings only (the user's own agent settings are never
+written) and a fresh InsurStaq data directory, then checks what the hooks decided, what the agent
+saw, the files and the Git history.
+
+| Scenario | What must hold | Claude Code 2.1.296 (12 October 2026) | Cursor | Codex CLI |
+|---|---|---|---|---|
+| Doctor | every event's output has the agent's exact shape | ✓ | not run yet | not run yet |
+| Observe | Stop never blocks; the change is made and recorded | ✓ | not run yet | not run yet |
+| Warn | Stop never blocks; a warning is shown | ✓ | not run yet | not run yet |
+| Enforce, fix | the regression is reported (right after the edit, or at Stop) with its catalog id, file and line and no code; the agent fixes it; the final Stop allows the turn; an independent Guard run on the result is not blocked | ✓ | not run yet | not run yet |
+| Enforce, loop safety | the first Stop blocks and names `SEC-102`; a repeated Stop with the same regression is released with a notice; at most 3 blocks a turn | ✓ | not run yet | not run yet |
+| Private path | reading a file under a private path is denied with the policy's reason; its content never reaches the agent | ✓ | not run yet | not run yet |
+| Commit, Enforce | `git commit` is denied while the change is blocked; HEAD unchanged | ✓ | not run yet | not run yet |
+| Push, Enforce | `git push` is denied while the change is blocked or unable to verify; the remote is unchanged | ✓ | not run yet | not run yet |
+
+Cursor and Codex are checked against their published hooks documentation and source (table
+above) and with Doctor's synthetic events; their live runs are still to come. Copilot has no
+hooks to run.
 
 ## Claude Code
 
