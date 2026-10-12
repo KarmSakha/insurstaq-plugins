@@ -1,0 +1,26 @@
+#!/bin/sh
+# InsurStaq Guard Hooks for Claude Code: `insurstaq-cli hook claude <event>`.
+#
+# Runs only the command-line tool bundled (signed and notarized) inside InsurStaq.app, by its
+# absolute path. No network, no download, no other program. InsurStaq checks the bundled
+# tool's code signature when you click Connect in Settings -> Coding Agents.
+#
+# Copyright (c) KarmSakha Limited. MIT licence (../../LICENSE).
+
+case "$1" in
+  SessionStart|PostToolUse|Stop|PreToolUse) ;;
+  *) echo "insurstaq-hook: unknown event" >&2; exit 0 ;;
+esac
+
+for bin in \
+  "/Applications/InsurStaq.app/Contents/MacOS/insurstaq-cli" \
+  "${HOME:-/nonexistent}/Applications/InsurStaq.app/Contents/MacOS/insurstaq-cli"
+do
+  if [ -x "$bin" ]; then
+    exec "$bin" hook claude "$1"
+  fi
+done
+
+# Not installed: say so once and let the agent continue (nothing to check against).
+echo '{"systemMessage":"InsurStaq Guard Hooks: InsurStaq.app was not found in Applications, so this turn was not checked."}'
+exit 0

@@ -37,6 +37,13 @@ Codex receives a verdict with finding ids, severities and `file:line` locations,
 code itself or queues the finding for you in InsurStaq with `insurstaq_request_fix`. See the
 [tool list](../docs/REFERENCE.md#tools).
 
+## Guard Hooks
+
+With InsurStaq 1.0.9 or later, the `[hooks]` tables in [`config.toml`](config.toml) make InsurStaq
+check the change when Codex tries to end a turn. Codex runs new hooks only after you trust them.
+Choose Observe, Warn or Enforce in InsurStaq → Settings → Coding Agents. Details:
+[docs/HOOKS.md](../docs/HOOKS.md).
+
 ## Privacy
 
 InsurStaq never uploads your source code. The server returns security metadata (verdict,

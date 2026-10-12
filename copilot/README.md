@@ -19,8 +19,8 @@ need VS Code's agent mode; availability depends on your Copilot plan and organiz
 * **All workspaces:** run **MCP: Open User Configuration** and add the same `insurstaq` entry
   under `servers`.
 
-Start the server from the `mcp.json` editor (or **MCP: List Servers**) and confirm the five
-InsurStaq tools appear in the agent's tool picker. If VS Code cannot start it, set
+Start the server from the `mcp.json` editor (or **MCP: List Servers**) and confirm the eight
+InsurStaq tools (five with InsurStaq before 1.0.9) appear in the agent's tool picker. If VS Code cannot start it, set
 `command` to the bundled tool's absolute path (InsurStaq → Settings → Coding Agents → Copy Path,
 normally `/Applications/InsurStaq.app/Contents/MacOS/insurstaq-cli`) and `args` to `["mcp"]`.
 
@@ -33,6 +33,12 @@ In agent mode, ask Copilot to verify its work, for example:
 Copilot receives a verdict with finding ids, severities and `file:line` locations, then fixes the
 code itself or queues the finding for you in InsurStaq with `insurstaq_request_fix`. See the
 [tool list](../docs/REFERENCE.md#tools).
+
+## Advisory instructions
+
+Copilot has no hooks InsurStaq relies on. [`.github/copilot-instructions.md`](.github/copilot-instructions.md)
+asks it to verify with InsurStaq before it reports work as done; copy it into your repository's
+`.github/`. It is advisory: nothing stops a turn that skips it.
 
 ## Privacy
 

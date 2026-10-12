@@ -31,8 +31,8 @@ To try it from a checkout:
 claude --plugin-dir ./claude
 ```
 
-Run `/mcp` in Claude Code to confirm the `insurstaq` server is connected and its five tools are
-listed.
+Run `/mcp` in Claude Code to confirm the `insurstaq` server is connected and its eight tools are
+listed (five with InsurStaq before 1.0.9).
 
 ## Use
 
@@ -41,9 +41,15 @@ Ask Claude to check its work, for example:
 > After you finish, verify the changes with InsurStaq and fix anything it blocks.
 
 Claude calls `insurstaq_verify_changes` with the repository path and gets back `PASSED`,
-`PASSED_WITH_WARNINGS`, `BLOCKED` or `UNABLE_TO_VERIFY` with finding ids, severities and
+`PASSED_WITH_WARNINGS`, `PASSED_WITH_LIMITED_COVERAGE`, `BLOCKED` or `UNABLE_TO_VERIFY` with finding ids, severities and
 `file:line` locations. It can then open those files itself, or call `insurstaq_request_fix` to
 queue the finding for you to review in the InsurStaq app. See the [tool list](../docs/REFERENCE.md#tools).
+
+## Guard Hooks
+
+With InsurStaq 1.0.9 or later, the plugin also registers Guard Hooks (`hooks/hooks.json`): InsurStaq
+checks the change when Claude tries to end a turn, without being asked. Choose Observe, Warn or
+Enforce in InsurStaq → Settings → Coding Agents. Details: [docs/HOOKS.md](../docs/HOOKS.md).
 
 ## Privacy
 

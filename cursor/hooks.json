@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      { "command": "/Applications/InsurStaq.app/Contents/MacOS/insurstaq-cli hook cursor sessionStart", "timeout": 5 }
+    ],
+    "afterFileEdit": [
+      { "command": "/Applications/InsurStaq.app/Contents/MacOS/insurstaq-cli hook cursor afterFileEdit", "timeout": 15 }
+    ],
+    "stop": [
+      { "command": "/Applications/InsurStaq.app/Contents/MacOS/insurstaq-cli hook cursor stop", "timeout": 75, "loop_limit": 3 }
+    ],
+    "beforeReadFile": [
+      { "command": "/Applications/InsurStaq.app/Contents/MacOS/insurstaq-cli hook cursor beforeReadFile", "timeout": 10 }
+    ],
+    "beforeShellExecution": [
+      { "command": "/Applications/InsurStaq.app/Contents/MacOS/insurstaq-cli hook cursor beforeShellExecution", "timeout": 10 }
+    ]
+  }
+}

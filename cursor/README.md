@@ -17,7 +17,8 @@ install ([details](../docs/REFERENCE.md#where-the-insurstaq-command-comes-from))
 * **Without the plugin:** copy the `insurstaq` entry of [`mcp.json`](mcp.json) into
   `~/.cursor/mcp.json` (all projects) or `.cursor/mcp.json` (one project).
 
-Check Settings → MCP: the `insurstaq` server should be enabled with five tools. If Cursor cannot
+Check Settings → MCP: the `insurstaq` server should be enabled with eight tools (five with InsurStaq
+before 1.0.9). If Cursor cannot
 start it, set `command` to the bundled tool's absolute path (Settings → Coding Agents → Copy
 Path, normally `/Applications/InsurStaq.app/Contents/MacOS/insurstaq-cli`) and `args` to `["mcp"]`.
 
@@ -30,6 +31,13 @@ Ask the agent to verify its work, for example:
 The agent calls `insurstaq_verify_changes` and receives a verdict with finding ids, severities
 and `file:line` locations, then fixes the code itself or queues the finding for you in InsurStaq
 with `insurstaq_request_fix`. See the [tool list](../docs/REFERENCE.md#tools).
+
+## Guard Hooks
+
+With InsurStaq 1.0.9 or later, copy [`hooks.json`](hooks.json) to your project's `.cursor/hooks.json`
+(trusted workspaces) or to `~/.cursor/hooks.json`: InsurStaq then checks the change when the agent
+tries to stop. Choose Observe, Warn or Enforce in InsurStaq → Settings → Coding Agents. Details:
+[docs/HOOKS.md](../docs/HOOKS.md).
 
 ## Privacy
 

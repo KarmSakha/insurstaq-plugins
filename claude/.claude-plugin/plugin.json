@@ -1,8 +1,8 @@
 {
   "name": "insurstaq",
   "displayName": "InsurStaq Guard",
-  "version": "1.0.0",
-  "description": "Checks the security effect of your agent's code changes with InsurStaq on this Mac. Returns security metadata (verdict, severity, category, finding id, file:line), never source code.",
+  "version": "1.1.0",
+  "description": "Checks the security effect of your agent's code changes with InsurStaq on this Mac, and with Guard Hooks makes the check run at the end of every turn. Returns security metadata (verdict, severity, category, finding id, file:line), never source code.",
   "author": {
     "name": "KarmSakha Limited",
     "url": "https://insurstaq.ai"
@@ -14,6 +14,8 @@
     "security",
     "guard",
     "local",
-    "mcp"
-  ]
+    "mcp",
+    "hooks"
+  ],
+  "hooks": "./hooks/hooks.json"
 }
