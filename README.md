@@ -46,7 +46,7 @@ Or in Terminal:
 claude mcp add --scope user insurstaq -- /Applications/InsurStaq.app/Contents/MacOS/insurstaq-cli mcp
 ```
 
-Run `/mcp` in Claude Code: `insurstaq` should be connected with five tools. More in [`claude/`](claude/).
+Run `/mcp` in Claude Code: `insurstaq` should be connected with eight tools (five with InsurStaq before 1.0.9). More in [`claude/`](claude/).
 </details>
 
 <details>
